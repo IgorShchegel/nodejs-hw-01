@@ -1,10 +1,10 @@
 import { PATH_DB } from '../constants/contacts.js';
 import fs from 'fs/promises';
-import { getAllContacts } from './getAllContacts.js';
 
 export const removeLastContact = async () => {
   try {
-    const contacts = await getAllContacts();
+    const data = await fs.readFile(PATH_DB, 'utf-8');
+    const contacts = JSON.parse(data);
 
     if (contacts.length > 1) {
       const contactsRemoveLast = contacts.slice(0, -1);
